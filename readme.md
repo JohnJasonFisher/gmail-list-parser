@@ -20,4 +20,7 @@ test.email+spam@gmail.com
  will all go to the same address, and thus the result should be 1.
  
  ---
- 1) split email address by @, save one as address and the other as the username.
+ Thought process
+ 1) Split email address by @, save one as address and the other as the username.
+ 2) Remove All dots in the username
+ 3) Split the username by +word and return the first item in the split as the username
