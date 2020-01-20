@@ -18,3 +18,6 @@ test.email@gmail.com,
 test.email+spam@gmail.com
  and testemail@gmail.com
  will all go to the same address, and thus the result should be 1.
+ 
+ ---
+ 1) split email address by @, save one as address and the other as the username.

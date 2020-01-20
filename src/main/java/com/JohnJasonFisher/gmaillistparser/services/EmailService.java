@@ -3,6 +3,7 @@ package com.JohnJasonFisher.gmaillistparser.services;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EmailService {
@@ -13,20 +14,21 @@ public class EmailService {
 
             for (String email : emails) {
 
-                // parse out "\\+.+@" from emailString
-                List<String> splitEmail = Arrays.asList(email.split("\\+.+@"));
+                List<String> splitEmail = Arrays.asList(email.split("@"));
 
-                splitEmail.set(0, parseOutDotFromString(splitEmail.get(0)));
-                System.out.println(splitEmail);
-
-                if (splitEmail.size() == 1) {
-                    email = splitEmail.get(0);
+                String username;
+                String address;
+                if (splitEmail.size() >= 2) {
+                    username = String.join("", splitEmail.subList(0, splitEmail.size() - 1));
+                    address = splitEmail.get(splitEmail.size() - 1);
                 } else {
-                    email = splitEmail.get(0) + "@" + splitEmail.get(splitEmail.size() - 1);
+                    // not a valid email if there is no @ char
+                    break;
                 }
 
-                System.out.println(email);
-                uniqueEmails.add(email);
+                username = parseOutDotFromString(username);
+
+                uniqueEmails.add(username + "@" + address);
             }
         }
 
