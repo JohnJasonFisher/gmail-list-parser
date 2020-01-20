@@ -27,7 +27,7 @@ public class EmailService {
                 }
 
                 String usernameNoDot = parseOutDotFromString(username);
-                String usernameNoDotPlus = usernameNoDot.split("\\+.+")[0];
+                String usernameNoDotPlus = parseOutPlusFromString(usernameNoDot);
 
                 uniqueEmails.add(String.format("%s@%s", usernameNoDotPlus, address));
             }
@@ -38,5 +38,9 @@ public class EmailService {
 
     String parseOutDotFromString(String string) {
         return string.replace("." , "");
+    }
+
+    String parseOutPlusFromString(String string) {
+        return string.split("\\+.+")[0];
     }
 }
