@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
+@SpringBootTest(classes = {EmailService.class})
 class EmailServiceTest {
 
     @Autowired
@@ -73,6 +73,15 @@ class EmailServiceTest {
         testEmails.add("testemail@gmail.com");
 
         Assertions.assertEquals(1, emailService.parseUniqueEmails(testEmails).size());
+    }
+
+    @Test
+    void getUniqueEmailCount() {
+        testEmails.add("test.email@gmail.com");
+        testEmails.add("test.email+spam@gmail.com");
+        testEmails.add("testemail@gmail.com");
+
+        Assertions.assertEquals(1, (int) emailService.getUniqueEmailCount(testEmails));
     }
 
     @Test
