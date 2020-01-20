@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class EmailService {
-    public Set<String> parseUniqueEmails(List<String> emails) {
+    Set<String> parseUniqueEmails(List<String> emails) {
 
         Set<String> uniqueEmails = new HashSet<>(0);
         if (!emails.isEmpty()) {
@@ -42,5 +42,9 @@ public class EmailService {
 
     String parseOutPlusFromString(String string) {
         return string.split("\\+.+")[0];
+    }
+
+    public Integer getUniqueEmailCount(List<String> emails) {
+        return parseUniqueEmails(emails).size();
     }
 }

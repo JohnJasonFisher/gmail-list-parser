@@ -76,6 +76,15 @@ class EmailServiceTest {
     }
 
     @Test
+    void getUniqueEmailCount() {
+        testEmails.add("test.email@gmail.com");
+        testEmails.add("test.email+spam@gmail.com");
+        testEmails.add("testemail@gmail.com");
+
+        Assertions.assertEquals(1, (int) emailService.getUniqueEmailCount(testEmails));
+    }
+
+    @Test
     void test_parseOutDotFromString() {
         Assertions.assertEquals(
             "wordthingtwo", emailService.parseOutDotFromString("word.thing.two")
