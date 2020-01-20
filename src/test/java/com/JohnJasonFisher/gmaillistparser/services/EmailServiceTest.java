@@ -58,6 +58,23 @@ class EmailServiceTest {
         Assertions.assertEquals(1, emailService.parseUniqueEmails(testEmails).size());
     }
 
+    @Test
+    void given_two_pluses_in_one_email_return_1() {
+        testEmails.add("john@gmail.com");
+        testEmails.add("john+fisher+meyer@gmail.com");
+
+        Assertions.assertEquals(1, emailService.parseUniqueEmails(testEmails).size());
+    }
+
+    @Test
+    void given_all_email_types_return_1() {
+        testEmails.add("test.email@gmail.com");
+        testEmails.add("test.email+spam@gmail.com");
+        testEmails.add("testemail@gmail.com");
+
+        Assertions.assertEquals(1, emailService.parseUniqueEmails(testEmails).size());
+    }
+
 
     @Test
     void test_parseOutDotFromString() {
