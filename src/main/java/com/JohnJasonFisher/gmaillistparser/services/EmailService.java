@@ -3,7 +3,6 @@ package com.JohnJasonFisher.gmaillistparser.services;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class EmailService {
@@ -34,7 +33,7 @@ public class EmailService {
         return uniqueEmails;
     }
 
-    protected String parseOutDotFromString(String string) {
+    String parseOutDotFromString(String string) {
         return string.replace("." , "");
     }
 }
