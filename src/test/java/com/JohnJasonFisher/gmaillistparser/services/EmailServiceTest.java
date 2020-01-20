@@ -75,11 +75,18 @@ class EmailServiceTest {
         Assertions.assertEquals(1, emailService.parseUniqueEmails(testEmails).size());
     }
 
-
     @Test
     void test_parseOutDotFromString() {
         Assertions.assertEquals(
             "wordthingtwo", emailService.parseOutDotFromString("word.thing.two")
         );
     }
+
+    @Test
+    void test_parseOutPlusFromString() {
+        Assertions.assertEquals(
+            "word", emailService.parseOutPlusFromString("word+thing+two")
+        );
+    }
+
 }
